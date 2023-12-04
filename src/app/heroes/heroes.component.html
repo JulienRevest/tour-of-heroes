@@ -1,0 +1,26 @@
+<h2>My Heroes</h2>
+
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+  <!-- [(ngModel)] will modify the value of filter.x to match the value of the checkbox 
+  getHeroes() is called whenever we click on a check box -->
+  <input type="checkbox" [(ngModel)]="filter.hero" (ngModelChange)="getHeroes()"/> Hero 
+  <input type="checkbox" [(ngModel)]="filter.antihero" (ngModelChange)="getHeroes()"/> Anti-Hero 
+  <input type="checkbox" [(ngModel)]="filter.villain" (ngModelChange)="getHeroes()"/> Villain
+</div>
+
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button class="delete" title="delete hero"
+      (click)="delete(hero)">x</button>
+  </li>
+</ul>

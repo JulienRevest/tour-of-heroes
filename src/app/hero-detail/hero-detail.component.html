@@ -1,0 +1,54 @@
+<div *ngIf="hero">
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+    <label>name:
+      <input id="heroName" [(ngModel)]="hero.name" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <span>category: </span>
+    <form >
+      <!-- For the radio button to be already selected, make sure that it has the "name" as the 
+      corresponding to the Angular property that you want to select-->
+      <input type="radio" [(ngModel)]="hero.category" name="category" value="Hero" (click)="hero.category = 'Hero'"/>Hero
+      <input type="radio" [(ngModel)]="hero.category" name="category" value="AntiHero" (click)="hero.category = 'AntiHero'"/>Anti-Hero
+      <input type="radio" [(ngModel)]="hero.category" name="category" value="Villain" (click)="hero.category = 'Villain'"/>Villain
+    </form>
+  </div>
+  <div>
+    Rating: 
+    <input [(ngModel)]="hero.rating" type="number" placeholder="rating" min="0" max="5"/> / 5
+  </div>
+  <div>
+    Original universe: 
+    <input [(ngModel)]="hero.universe" placeholder="universe">
+  </div>
+  <div>
+    Powers:
+    <li *ngFor="let powers of hero.powers; let in = index">
+      {{hero.powers[in]}}
+      <button class="delete" title="delete power"
+      (click)="removePower(in)">x</button>
+    </li>
+    <input #power id="power"/>
+    <button (click)="addPower(power.value);">
+      add power
+    </button>
+  </div>
+  <br>
+  <div>
+    Weaknesses:
+    <li *ngFor="let weaknesses of hero.weaknesses; let in = index">
+      {{hero.weaknesses[in]}}
+      <button class="delete" title="delete weakness"
+      (click)="removeWeakness(in)">x</button>
+    </li>
+    <input #weakness id="weakness"/>
+    <button (click)="addWeakness(weakness.value);">
+      add weakness
+    </button>
+  </div>
+  <button id="goBack" (click)="goBack()">go back</button>
+  <button id="save" (click)="save()">save</button>
+</div>

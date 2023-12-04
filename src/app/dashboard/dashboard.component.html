@@ -1,0 +1,12 @@
+<h3>Top Heroes (by ratings)</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let hero of heroes" class="col-1-4"
+      routerLink="/detail/{{hero.id}}">
+    <div class="module hero">
+      <h4>{{hero.name}}</h4>
+      <label>{{hero.rating}}<img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Orange_star.svg" width="20"/></label>
+    </div>
+  </a>
+</div>
+
+<app-hero-search></app-hero-search>
